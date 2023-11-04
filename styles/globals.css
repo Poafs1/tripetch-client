@@ -2,26 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* 
+FONT FAMILY
+font-family: 'Roboto', sans-serif;
+*/
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  color: black;
+  line-height: normal;
+}
+
+#__next {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+*::placeholder {
+  color: #9ca3af !important;
+}
+
+/* 
+* -----------------------------------------
+* React Slick (Slider)
+* -----------------------------------------
+*/
+
+.slick-dots > ul > li {
+  width: 10px;
+  height: 10px;
+  margin: 0;
+}
+
+.slick-active > div {
+  background-color: #603EBE !important;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  html {
+    color-scheme: white;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  body {
+    color: black;
+  }
 }

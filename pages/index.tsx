@@ -1,118 +1,290 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import Image from "next/image";
+import { ReactElement } from "react";
+import Slider from "react-slick";
 
 export default function Home() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    appendDots: (dots: ReactElement[]) => (
+      <div
+        style={{
+          left: "0",
+          bottom: "30px",
+        }}
+        className="absolute"
+      >
+        <ul className="space-x-3">{dots}</ul>
+      </div>
+    ),
+    customPaging: (_i: number) => (
+      <div className="w-2.5 h-2.5 rounded-full bg-[#D8D8D8]"></div>
+    ),
+  };
+
+  const renderMobileSliderItem = (
+    listItemNumber: string,
+    title: string,
+    description: string
+  ) => {
+    return (
+      <div className="pt-[72px] pb-[69px] px-[18px] space-y-5 bg-[#F5F4F9] h-[284px]">
+        <div className="flex items-center space-x-2.5">
+          <div className="space-y-1">
+            <p className="text-sm md:text-lg tracking-[1.5px] leading-normal">
+              {listItemNumber}
+            </p>
+            <div className="h-[5px] bg-[#603EBE] rounded-[2.5px]"></div>
+          </div>
+          <h2 className="text-[#C2C2C2] text-[28px] md:text-4xl leading-normal tracking-[1.5px]">
+            {title}
+          </h2>
+        </div>
+        <p className="text-[15px] leading-normal">{description}</p>
+      </div>
+    );
+  };
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="overflow-x-hidden min-h-screen">
+      {/* Athlets section */}
+      <section className="relative">
+        {/* Hero Image */}
+        <div className="absolute left-0 top-[35px] right-2/4 bottom-0 grid-cols-1 justify-items-center lg:grid hidden z-0">
+          <Image
+            src="/static/american-football-player-lg.png"
+            alt="American Football Player"
+            width={678}
+            height={950}
+            className="!w-[678px] !min-w-[678px] !h-[950px] !min-h-[950px]"
+          />
+        </div>
+        <div className="absolute left-[-185px] top-[101px] hidden md:block lg:hidden">
+          <Image
+            src="/static/american-football-player-md.png"
+            alt="American Football Player"
+            width={518}
+            height={718}
+            className="!w-[518px] !h-[718px] !min-w-[518px] !min-h-[718px]"
+          />
+        </div>
+        <div className="absolute md:hidden top-[70px] left-0 right-0 z-10 flex justify-center">
+          <Image
+            src="/static/american-football-player-sm.png"
+            alt="American Football Player"
+            width={218}
+            height={281}
+            className="!w-[218px] !h-[281px] !min-w-[218px] !min-h-[281px]"
+          />
+        </div>
+        <div className="hidden md:block">
+          {/* Connection */}
+          <div className="grid grid-cols-3 lg:grid-cols-2 pt-[87px] pb-[30px] lg:pt-6 lg:pb-14 px-[30px] ">
+            <div className="col-start-2 col-span-2 max-w-[717px]">
+              <h1 className="text-[#E7E7E7] text-[90px]">ATHLETS</h1>
+              <div className="mt-9 lg:mt-[59px] flex items-center space-x-2.5">
+                <div className="space-y-1">
+                  <p className="text-lg tracking-[1.5px] leading-normal">01</p>
+                  <div className="h-[5px] bg-[#603EBE] rounded-[2.5px]"></div>
+                </div>
+                <h2 className="text-[#C2C2C2] text-4xl leading-normal tracking-[1.5px]">
+                  CONNECTION
+                </h2>
+              </div>
+              <p className="leading-7 mt-[21px] lg:mt-[31px] text-lg lg:text-[20px]">
+                Connect with coaches directly, you can ping coaches to view
+                profile.
+              </p>
+            </div>
+          </div>
+          {/* Collaboration */}
+          <div className="grid grid-cols-3 lg:grid-cols-2 py-[30px] lg:pt-[53px] lg:pb-14 bg-[#F5F4F9] px-[30px] ">
+            <div className="col-start-2 col-span-2 max-w-[717px]">
+              <div className="flex items-center space-x-2.5">
+                <div className="space-y-1">
+                  <p className="text-lg tracking-[1.5px] leading-normal">02</p>
+                  <div className="h-[5px] bg-[#603EBE] rounded-[2.5px]"></div>
+                </div>
+                <h2 className="text-[#C2C2C2] text-4xl leading-normal tracking-[1.5px]">
+                  COLLABORATION
+                </h2>
+              </div>
+              <p className="leading-7 mt-[21px] text-lg lg:text-[20px]">
+                Work with other student athletes to  increase visability. When
+                you share and like other players videos it will increase your
+                visability as a player. This is the team work aspect to Surface
+                1.
+              </p>
+            </div>
+          </div>
+          {/* Growth */}
+          <div className="grid grid-cols-3 lg:grid-cols-2 pt-[30px] pb-[58px] lg:pt-20 lg:pb-[98px] bg-[#5E3DB3]">
+            <div className="col-start-2 col-span-2 max-w-[717px]">
+              <div className="flex items-center space-x-2.5">
+                <div className="space-y-1">
+                  <p className="text-lg tracking-[1.5px] leading-normal">03</p>
+                  <div className="h-[5px] bg-white rounded-[2.5px]"></div>
+                </div>
+                <h2 className="text-[#C2C2C2] text-4xl leading-normal tracking-[1.5px]">
+                  GROWTH
+                </h2>
+              </div>
+              <p className="leading-7 mt-[21px] text-lg lg:text-[20px] text-white">
+                Resources and tools for you to get better as a student Athelte.
+                Access to training classes, tutor sessions, etc 
+              </p>
+            </div>
+          </div>
+        </div>
+        {/* Mobile view */}
+        <div className="block md:hidden">
+          <div className="px-[18px]">
+            <h1 className="text-[#E7E7E7] text-[50px]">ATHLETS</h1>
+          </div>
+          <div className="mt-[237px]">
+            <Slider {...settings} className="relative">
+              {renderMobileSliderItem(
+                "01",
+                "CONNECTION",
+                "Connect with coaches directly, you can ping coaches to view profile."
+              )}
+              {renderMobileSliderItem(
+                "02",
+                "COLLABORATION",
+                "Work with other student athletes to increase visability. When you share and like other players videos it will increase your visability as a player. This is the team work aspect to Surface 1."
+              )}
+              {renderMobileSliderItem(
+                "03",
+                "GROWTH",
+                "Resources and tools for you to get better as a student Athelte. Access to training classes, tutor sessions, etc"
+              )}
+            </Slider>
+          </div>
+        </div>
+      </section>
+      {/* Players section */}
+      <div className="relative">
+        {/* Hero Image */}
+        <div className="absolute right-[-300px] 2xl:right-[125px] top-0 hidden lg:block">
+          <Image
+            src="/static/basket-ball-player-lg.png"
+            alt="Basket Ball Player"
+            width={991}
+            height={815}
+            className="!w-[991px] !h-[815px] !min-w-[991px] !min-h-[815px] col-start-2"
+          />
+        </div>
+        <div className="absolute right-[-250px] top-[33px] hidden md:block lg:hidden">
+          <Image
+            src="/static/basket-ball-player-md.png"
+            alt="Basket Ball Player"
+            width={691}
+            height={568}
+            className="!w-[691px] !h-[568px]"
+          />
+        </div>
+        <div className="absolute md:hidden top-[100px] left-0 right-0 z-10 flex justify-center">
+          <Image
+            src="/static/basket-ball-player-sm.png"
+            alt="Basket Ball Player"
+            width={302}
+            height={250}
+            className="!w-[302px] !h-[250px] !min-w-[302px] !min-h-[250px]"
+          />
+        </div>
+        <div className="hidden md:block">
+          {/* Connection */}
+          <div className="lg:grid grid-cols-2 pt-[52px] lg:pt-[124px] pb-2.5 lg:pb-[69px] lg:max-w-7xl lg:m-auto px-[30px] 2xl:px-0">
+            <div className="max-w-[432px] lg:max-w-none">
+              <h1 className="text-[#E7E7E7] text-[90px]">PLAYERS</h1>
+              <div className="mt-[34px] lg:mt-[68px] flex items-center space-x-2.5">
+                <div className="space-y-1">
+                  <p className="text-lg tracking-[1.5px] leading-normal">01</p>
+                  <div className="h-[5px] bg-[#603EBE] rounded-[2.5px]"></div>
+                </div>
+                <h2 className="text-[#C2C2C2] text-4xl leading-normal tracking-[1.5px]">
+                  CONNECTION
+                </h2>
+              </div>
+              <p className="leading-7 mt-[21px] text-lg lg:text-[20px]">
+                Connect with talented athlete directly, you can watch their
+                skills through video showreels directly from Surface 1.
+              </p>
+            </div>
+          </div>
+          {/* Collaboration */}
+          <div className="bg-[#F5F4F9]">
+            <div className="lg:grid grid-cols-2 pt-[51px] lg:pt-[52px] pb-[65px] lg:pb-[102px] lg:max-w-7xl lg:m-auto px-[30px] 2xl:px-0">
+              <div className="max-w-[432px] lg:max-w-none">
+                <div className="flex items-center space-x-2.5">
+                  <div className="space-y-1">
+                    <p className="text-lg tracking-[1.5px] leading-normal">
+                      02
+                    </p>
+                    <div className="h-[5px] bg-[#603EBE] rounded-[2.5px]"></div>
+                  </div>
+                  <h2 className="text-[#C2C2C2] text-4xl leading-normal tracking-[1.5px]">
+                    COLLABORATION
+                  </h2>
+                </div>
+                <p className="leading-7 mt-[21px] text-lg lg:text-[20px]">
+                  Work with recruiter to increase your chances of finding
+                  talented athlete.
+                </p>
+              </div>
+            </div>
+          </div>
+          {/* Growth */}
+          <div className="bg-[#090C35]">
+            <div className="lg:grid grid-cols-2 lg:pt-[87px] pb-[72px] pt-11 lg:pb-[62px] lg:max-w-7xl lg:m-auto px-[30px] 2xl:px-0">
+              <div className="max-w-[432px] lg:max-w-none">
+                <div className="flex items-center space-x-2.5">
+                  <div className="space-y-1">
+                    <p className="text-lg tracking-[1.5px] leading-normal text-[#8F6BE8]">
+                      03
+                    </p>
+                    <div className="h-[5px] bg-white rounded-[2.5px]"></div>
+                  </div>
+                  <h2 className="text-[#C2C2C2] text-4xl leading-normal tracking-[1.5px]">
+                    GROWTH
+                  </h2>
+                </div>
+                <p className="leading-7 mt-[21px] text-lg lg:text-[20px] text-white">
+                  Save your time, recruit proper athlets for your team.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Mobile view */}
+        <div className="block md:hidden pt-[19px]">
+          <div className="px-[18px]">
+            <h1 className="text-[#E7E7E7] text-[50px]">PLAYERS</h1>
+          </div>
+          <div className="mt-[237px]">
+            <Slider {...settings} className="relative">
+              {renderMobileSliderItem(
+                "01",
+                "CONNECTION",
+                "Connect with talented athlete directly, you can watch their skills through video showreels directly from Surface 1."
+              )}
+              {renderMobileSliderItem(
+                "02",
+                "COLLABORATION",
+                "Work with recruiter to increase your chances of finding talented athlete."
+              )}
+              {renderMobileSliderItem(
+                "03",
+                "GROWTH",
+                "Save your time, recruit proper athlets for your team."
+              )}
+            </Slider>
+          </div>
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
-  )
+  );
 }
